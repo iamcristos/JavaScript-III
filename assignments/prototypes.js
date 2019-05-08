@@ -136,3 +136,81 @@ Humanoid.prototype.greet = function () {
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  function Villain (attributes) {
+    Humanoid.call(this, attributes)
+    this.healthPoints = attributes.healthPoints
+    this.team = attributes.team;  
+    this.weapons = attributes.weapons;
+    this.language = attributes.language;
+    this.name = attributes.name;
+    this.dimensions = attributes.dimensions;
+    this.createdAt = attributes.createdAt;
+  
+  }
+  Villain.prototype = Object.create(Humanoid.prototype);
+  Villain.prototype.removeHealth = function () {
+     this.healthPoints -=1
+     if (this.healthPoints <= 0){
+       return this.destroy()
+     }else {
+      return `${this.name} is still in the game with ${this.healthPoints} health points`
+    }
+  }
+const villians = new Villain({
+  createdAt: new Date(),
+  dimensions: {
+    length: 2,
+    width: 1,
+    height: 1,
+  },
+  healthPoints: 5,
+  name: 'Bruce',
+  team: 'Mage Guild',
+  weapons: [
+    'Staff of Shamalama',
+  ],
+  language: 'Common Tongue',
+});
+
+  console.log(villians.removeHealth());
+
+// hero constructor
+  function Hero (attributes) {
+    Humanoid.call(this, attributes);
+    this.healthPoints = attributes.healthPoints
+    this.team = attributes.team;  
+    this.weapons = attributes.weapons;
+    this.language = attributes.language;
+    this.name = attributes.name;
+    this.dimensions = attributes.dimensions;
+    this.createdAt = attributes.createdAt;
+  };
+  Hero.prototype = Object.create(Humanoid.prototype);
+  Hero.prototype.removeHealth = function () {
+    this.healthPoints -=1
+    if (this.healthPoints <= 0){
+      return this.destroy()
+    } else {
+      return `${this.name} is still in the game with ${this.healthPoints} health points`
+    }
+ }
+
+ const heros=  new Hero({
+    createdAt: new Date(),
+    dimensions: {
+      length: 1,
+      width: 2,
+      height: 4,
+    },
+    healthPoints: -10,
+    name: 'Lil',
+    team: 'Forest Kingdom',
+    weapons: [
+      'Bow',
+      'Dagger',
+    ],
+    language: 'Elvish',
+  });
+
+  console.log(heros.destroy())
