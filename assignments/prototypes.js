@@ -139,18 +139,10 @@ Humanoid.prototype.greet = function () {
 
   function Villain (attributes) {
     Humanoid.call(this, attributes)
-    this.healthPoints = attributes.healthPoints
-    this.team = attributes.team;  
-    this.weapons = attributes.weapons;
-    this.language = attributes.language;
-    this.name = attributes.name;
-    this.dimensions = attributes.dimensions;
-    this.createdAt = attributes.createdAt;
-  
   }
   Villain.prototype = Object.create(Humanoid.prototype);
-  Villain.prototype.removeHealth = function () {
-     this.healthPoints -=1
+  Villain.prototype.removeHealth = function (punch=10) {
+     this.healthPoints -=punch
      if (this.healthPoints <= 0){
        return this.destroy()
      }else {
@@ -164,9 +156,8 @@ const villians = new Villain({
     width: 1,
     height: 1,
   },
-  healthPoints: 5,
-  name: 'Bruce',
-  team: 'Mage Guild',
+  healthPoints: 15,
+  name: 'Cerci',
   weapons: [
     'Staff of Shamalama',
   ],
@@ -174,21 +165,15 @@ const villians = new Villain({
 });
 
   console.log(villians.removeHealth());
-
+  console.log(villians.removeHealth(10));
+  console.log(villians.removeHealth(10));
 // hero constructor
   function Hero (attributes) {
     Humanoid.call(this, attributes);
-    this.healthPoints = attributes.healthPoints
-    this.team = attributes.team;  
-    this.weapons = attributes.weapons;
-    this.language = attributes.language;
-    this.name = attributes.name;
-    this.dimensions = attributes.dimensions;
-    this.createdAt = attributes.createdAt;
   };
   Hero.prototype = Object.create(Humanoid.prototype);
-  Hero.prototype.removeHealth = function () {
-    this.healthPoints -=1
+  Hero.prototype.removeHealth = function (punch=6) {
+    this.healthPoints -=punch
     if (this.healthPoints <= 0){
       return this.destroy()
     } else {
@@ -203,9 +188,9 @@ const villians = new Villain({
       width: 2,
       height: 4,
     },
-    healthPoints: -10,
-    name: 'Lil',
-    team: 'Forest Kingdom',
+    healthPoints: 100,
+    name: 'Arya',
+    team: 'The North',
     weapons: [
       'Bow',
       'Dagger',
@@ -213,4 +198,4 @@ const villians = new Villain({
     language: 'Elvish',
   });
 
-  console.log(heros.destroy())
+  console.log(heros.removeHealth());
