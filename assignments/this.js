@@ -51,16 +51,15 @@ console.log(femi.message(7))
 // Principle 4
 
 // code example for Explicit Binding
-function Person (name,dob,year) {
+function Person (name,dob) {
     this.name = name;
     this.dob = dob;
-    this.toDecade = (year - dob) /10;
-    this.howManyDecade = function () {
-        
+    this.howManyDecade = function (year) {
+        this.toDecade = (year - dob) /10;
         return `${this.name} have lived ${this.toDecade}`
     }
 }
 
-const benjamin = new Person('Ben', 1995, 2019);
-const benDecade = benjamin;
-console.log(benDecade.howManyDecade())
+const benjamin = new Person('Ben', 1995);
+const benDecade = benjamin.howManyDecade;
+console.log(benDecade.call(benjamin,2019))
