@@ -53,10 +53,12 @@ function Humanoid (attributes) {
   this.weapons = attributes.weapons;
   this.language = attributes.language;
   this.name = attributes.name;
+  this.dimensions = attributes.dimensions;
+  this.createdAt = attributes.createdAt;
+  this.healthPoints = attributes.healthPoints;
 }
 Humanoid.prototype = Object.create(CharacterStats.prototype)
 Humanoid.prototype.greet = function () {
-  console.log(this.name)
   return `${this.name} offers a greeting in ${this.language}.`
 }
 /*
